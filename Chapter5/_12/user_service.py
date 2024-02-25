@@ -6,9 +6,17 @@ class UserService:
         self.user_repository = iuser_repository
 
     def exists(self, user: User) -> bool:
-        found = self.user_repository.find(user)
+        found = self.user_repository.find(user.name)
         return found 
 
 if __name__ == '__main__':
-    user_id = UserId('1010')
-    print(user_id.value)
+    from user_name import UserName
+    from user_repository import UserRepository
+    user_name = UserName('Tanaka')
+    user = User(user_name)
+
+    user_repository =  UserRepository()
+
+    user_service = UserService(user_repository)
+
+    print(user_service.exists(user))

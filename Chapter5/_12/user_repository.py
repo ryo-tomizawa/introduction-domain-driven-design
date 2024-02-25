@@ -10,6 +10,12 @@ class UserRepository(IUserRepository):
     def __init__(self) -> None:
         self.connection = sqlite3.connect(':memory:')
 
+        cursor = self.connection.cursor()
+
+        # 後続処理を動かすために、usersテーブルを作成・レコード追加
+        create_query = "create table users(id integer, name text PRIMARY KEY);"
+        cursor.execute(create_query)
+
     def save(self, user: User):
         cursor = self.connection.cursor()
 
@@ -22,7 +28,7 @@ class UserRepository(IUserRepository):
                     '{user.id.value}',
                     '{user.name.value}'
                 )
-                on conflict(id)
+                on conflict(name)
                 do update
                     set
                     name = '{user.name.value}'
@@ -32,6 +38,7 @@ class UserRepository(IUserRepository):
     # 静的型付けを用いて返り値をOptional型で定義
     def find(self, user_name: UserName) -> Optional[User]:
         cursor = self.connection.cursor()
+        
         query = f"SELECT * FROM users WHERE name = '{user_name.value}'"
         
         cursor.execute(query)
