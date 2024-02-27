@@ -8,12 +8,10 @@ class InMemoryUserRepository(IUserRepository):
         self.store = {}
 
     def find(self, user_name: str):
-        target = next((user for user in self.store.values() if user_name == user.name), None)
-        if target:
-            # インスタンスを直接返さずディープコピーを行う
-            return self.clone(target)
-        else:
-            return None
+        for user in self.store.values():
+            if user.name == user_name:
+                return self.clone(user)
+        return None
 
     def save(self, user: User):
         # 保存時もディープコピーを行う
