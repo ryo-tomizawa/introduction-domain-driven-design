@@ -9,7 +9,7 @@ from user_name import UserName
 class User:
     def __init__(self, name: UserName) -> None:
         if name is None: raise ValueError(f'incorrect value: {name}')
-        self.id = UserId(uuid.uuid4())
+        self.id = UserId(str(uuid.uuid4()))
         self.name = name
     
 

@@ -11,7 +11,7 @@ class User:
         if name is None: raise ValueError(f'incorrect value: {name}')
         
         if id is None:
-            self.id = UserId(uuid.uuid4())
+            self.id = UserId(str(uuid.uuid4()))
         else:
             self.id = id
         self.name = name
