@@ -7,7 +7,7 @@ class UserService:
 
     def exists(self, user: User)-> bool:
         found = self.user_repository.find(user.name)
-        return found
+        return found is not None
 
 
 if __name__ == '__main__':
