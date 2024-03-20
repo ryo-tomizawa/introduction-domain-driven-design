@@ -33,7 +33,7 @@ class UserApplicationService:
     def update(self, user_id: str, name: str, mail_address: str) -> None:
         target_id = UserId(user_id)
         user = self.user_repository.find(target_id)
-        if user is None: raise UserNotFoundException(target_id)
+        if user is None: raise UserNotFoundException(target_id, None)
 
         # メールアドレスだけを更新するため、ユーザ名が指定されないことを考慮
         if name is not None:

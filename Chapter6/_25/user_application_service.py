@@ -19,7 +19,7 @@ class UserApplicationService:
         mail_address = MailAddress(raw_mail_address)
         duplicated_user = self.user_repository.find_by_mail_address(mail_address)
         if duplicated_user is not None:
-            raise CanNotRegisterUserException(mail_address)
+            raise CanNotRegisterUserException(mail_address, None)
 
         user_name = UserName(name)
         user = User(None, user_name, mail_address)
@@ -37,7 +37,7 @@ class UserApplicationService:
     def update(self, command: UserUpdateCommand) -> None:
         target_id = UserId(command.id)
         user = self.user_repository.find(target_id)
-        if user is None: raise UserNotFoundException(target_id)
+        if user is None: raise UserNotFoundException(target_id, None)
 
         name = command.name
         if name is not None:
