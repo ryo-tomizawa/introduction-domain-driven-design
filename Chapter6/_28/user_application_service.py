@@ -35,7 +35,7 @@ class UserApplicationService:
     def update(self, command: UserUpdateCommand) -> None:
         target_id = UserId(command.id)
         user = self.user_repository.find(target_id)
-        if user is None: raise UserNotFoundException(target_id)
+        if user is None: raise UserNotFoundException(target_id, None)
 
         name = command.name
         if name is not None:
