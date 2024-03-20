@@ -1,0 +1,2 @@
+class ObjectB:
+    pass
