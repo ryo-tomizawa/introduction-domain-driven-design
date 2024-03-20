@@ -26,9 +26,10 @@ class CanNotRegisterUserException(Exception):
 
 
 if __name__ == '__main__':
+    from mail_address import MailAddress
     from user_id import UserId
 
-    user = User(UserId('111-222-333'), UserName('tanaka taro'))
+    user = User(UserId('111-222-333'), UserName('tanaka taro'), MailAddress('test@example.com'))
 
     try:
         raise CanNotRegisterUserException(user, 'Registration failed.')
