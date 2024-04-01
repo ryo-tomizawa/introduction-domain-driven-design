@@ -2,7 +2,7 @@
 import sys
 
 current_dir = os.path.dirname(__file__)
-shared_dir =os.path.abspath(os.path.join(current_dir, '../Shared/'))
+shared_dir =os.path.abspath(os.path.join(current_dir, '../../Shared/'))
 sys.path.append(shared_dir)
 
 from user_id import UserId
