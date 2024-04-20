@@ -69,7 +69,7 @@ class CircleApplicationService:
         if circle.is_full():
             raise CircleFullException(id)
         
-        circle.member.append(member)
+        circle.members.append(member)
         self.circle_repository.save(circle)
 
 if __name__ == '__main__':
