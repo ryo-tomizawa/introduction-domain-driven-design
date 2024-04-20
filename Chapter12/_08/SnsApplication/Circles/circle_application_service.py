@@ -64,7 +64,7 @@ class CircleApplicationService:
         id = CircleId(command.id)
         circle = self.circle_repository(id)
         if circle is None:
-            raise CircleNotFoundException(id, 'ユーザが見つかりませんでした。')
+            raise CircleNotFoundException(id, 'サークルが見つかりませんでした。')
         
         if circle.is_full():
             raise CircleFullException(id)
