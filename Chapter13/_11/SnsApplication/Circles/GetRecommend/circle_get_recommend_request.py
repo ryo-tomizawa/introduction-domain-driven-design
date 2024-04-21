@@ -1,0 +1,2 @@
+class CircleGetRecommendRequest:
+    pass
